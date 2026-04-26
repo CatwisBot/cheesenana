@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
@@ -61,12 +62,12 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
             </a>
           ))}
-          <a
-            href="#order"
+          <Link
+            href="/order"
             className="bg-primary text-dark font-bold px-6 py-2.5 rounded-full hover:bg-accent hover:text-white transition-all hover:scale-105 active:scale-95 shadow-[0_4px_14px_0_rgba(245,200,66,0.39)]"
           >
             Pesan Sekarang
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -98,13 +99,13 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <a
-                href="#order"
+              <Link
+                href="/order"
                 className="bg-primary text-dark font-bold px-6 py-3 rounded-xl text-center mt-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Pesan Sekarang
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}
