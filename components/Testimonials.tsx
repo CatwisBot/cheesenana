@@ -97,9 +97,9 @@ export default function Testimonials() {
           {duplicatedTestimonials.map((t, idx) => (
             <div 
               key={`${t.id}-${idx}`} 
-              className="w-[300px] md:w-[400px] shrink-0 mx-3 md:mx-4 flex"
+              className="w-75 md:w-100 shrink-0 mx-3 md:mx-4 flex"
             >
-              <div className="bg-white rounded-[24px] p-6 md:p-8 shadow-xl border border-primary/10 relative w-full flex flex-col hover:-translate-y-2 transition-transform duration-300">
+              <div className="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-primary/10 relative w-full flex flex-col hover:-translate-y-2 transition-transform duration-300">
                 <div className="absolute -top-4 -right-2 text-5xl md:text-6xl opacity-10">
                   ❝
                 </div>
@@ -111,7 +111,7 @@ export default function Testimonials() {
                 </div>
                 
                 <p className="text-dark/80 italic mb-6 md:mb-8 leading-relaxed font-medium relative z-10 text-sm md:text-base flex-1">
-                  "{t.content}"
+                  &ldquo;{t.content}&rdquo;
                 </p>
                 
                 <div className="flex items-center gap-3 md:gap-4 mt-auto">
