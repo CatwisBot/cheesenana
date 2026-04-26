@@ -64,25 +64,38 @@ function getPieceCount(formData: OrderFormData) {
 }
 
 function formatOrderTime() {
-  return new Intl.DateTimeFormat("id-ID", {
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date());
+  const now = new Date();
+  const pad = (value: number) => value.toString().padStart(2, "0");
+  const datePart = `${pad(now.getDate())}/${pad(now.getMonth() + 1)}/${now.getFullYear()}`;
+  const timePart = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  return `${datePart} ${timePart} WIB`;
+}
+
+function sanitizeMessageValue(value: string) {
+  return value
+    .normalize("NFKC")
+    .replace(/[\u200B-\u200F\uFEFF]/g, "")
+    .replace(/[\\*_~`]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function buildWhatsAppMessage(formData: OrderFormData, pieceCount: number) {
+  const nameText = sanitizeMessageValue(formData.name) || "-";
+  const phoneText = sanitizeMessageValue(formData.phone) || "-";
+  const flavorText = sanitizeMessageValue(formData.flavor) || "-";
   const toppingText =
-    formData.toppings.length > 0 ? formData.toppings.join(", ") : "Tanpa topping tambahan";
-  const locationText = formData.location.trim() ? formData.location.trim() : "-";
-  const notesText = formData.notes.trim() ? formData.notes.trim() : "-";
+    formData.toppings.length > 0
+      ? sanitizeMessageValue(formData.toppings.join(", "))
+      : "Tanpa topping tambahan";
+  const locationText = formData.location.trim() ? sanitizeMessageValue(formData.location) : "-";
+  const notesText = formData.notes.trim() ? sanitizeMessageValue(formData.notes) : "-";
+  const deliveryText = sanitizeMessageValue(formData.deliveryMethod) || "-";
   const packageText =
     formData.packageType === "Custom"
       ? `Custom - ${pieceCount} pcs`
       : `${formData.packageType} - ${pieceCount} pcs`;
+  const cleanPackageText = sanitizeMessageValue(packageText) || "-";
   const orderTime = formatOrderTime();
 
   return [
@@ -90,12 +103,12 @@ function buildWhatsAppMessage(formData: OrderFormData, pieceCount: number) {
     "",
     "Saya ingin pesan dengan detail berikut:",
     "",
-    `- Nama: ${formData.name.trim()}`,
-    `- No WhatsApp: ${formData.phone.trim()}`,
-    `- Varian: ${formData.flavor}`,
-    `- Paket: ${packageText}`,
+    `- Nama: ${nameText}`,
+    `- No WhatsApp: ${phoneText}`,
+    `- Varian: ${flavorText}`,
+    `- Paket: ${cleanPackageText}`,
     `- Topping: ${toppingText}`,
-    `- Metode Ambil: ${formData.deliveryMethod}`,
+    `- Metode Ambil: ${deliveryText}`,
     `- Lokasi/Patokan: ${locationText}`,
     `- Catatan: ${notesText}`,
     `- Waktu Order: ${orderTime}`,
