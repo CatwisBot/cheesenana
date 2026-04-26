@@ -9,11 +9,11 @@ const menuBlueprint = [
   {
     id: 1,
     step: "Langkah 1",
-    title: "Pilih Rasa Original",
-    subtitle: "Base: keju + susu",
-    description: "Fondasi rasa Cheesenana yang creamy, manis, dan gurih seimbang.",
-    options: ["Coklat", "Matcha", "Taro"],
-    note: "Ideal untuk pesanan personal maupun percobaan rasa pertama.",
+    title: "Pilih Varian Rasa",
+    subtitle: "Mulai dari Cheesenana Original",
+    description: "Varian dasar Cheesenana tetap jadi fondasi rasa, lalu kamu bisa pilih varian pisang favoritmu.",
+    options: ["Cheesenana Original", "Coklat Pisang", "Matcha Pisang", "Taro Pisang"],
+    note: "Cocok untuk pembeli baru yang ingin coba rasa signature maupun varian lainnya.",
     icon: CakeSlice,
     cardClass: "bg-white border-primary/35",
     badgeClass: "bg-primary/20 text-dark",
@@ -176,7 +176,7 @@ export default function Menu() {
           <h3 className="text-xl md:text-2xl font-display font-bold text-dark">Ringkasnya, alur pesan itu seperti ini:</h3>
           <div className="mt-4 grid gap-3 md:grid-cols-3">
             {[
-              "Pilih varian rasa original.",
+              "Pilih varian: Cheesenana Original atau varian pisang favorit.",
               "Tentukan ukuran paket: 3, 5, atau 10 pcs.",
               "Tambahkan topping agar rasanya makin personal.",
             ].map((step, index) => (
