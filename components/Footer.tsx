@@ -50,7 +50,7 @@ export default function Footer() {
                 <span>🕐</span> Buka Setiap Hari: 09.00 – 21.00
               </li>
               <li className="flex items-start gap-2 pt-2">
-                <span>📱</span> +62 123 4567 890
+                <span>📱</span> +62 896-3657-9514
               </li>
             </ul>
           </div>
