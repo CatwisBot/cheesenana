@@ -7,7 +7,12 @@ import { CheckCircle2, MessageCircle, PhoneCall, Store, Truck } from "lucide-rea
 const WHATSAPP_NUMBER = "6289636579514";
 const INSTAGRAM_URL = "https://www.instagram.com/cheesenanaa/";
 
-const flavorOptions = ["Coklat", "Matcha", "Taro"] as const;
+const flavorOptions = [
+  "Cheesenana Original",
+  "Coklat Pisang",
+  "Matcha Pisang",
+  "Taro Pisang",
+] as const;
 
 const packagePresets = [
   { key: "Paket hemat", pcs: 3 },
@@ -58,6 +63,17 @@ function getPieceCount(formData: OrderFormData) {
   return Math.max(1, formData.customPieces);
 }
 
+function formatOrderTime() {
+  return new Intl.DateTimeFormat("id-ID", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date());
+}
+
 function buildWhatsAppMessage(formData: OrderFormData, pieceCount: number) {
   const toppingText =
     formData.toppings.length > 0 ? formData.toppings.join(", ") : "Tanpa topping tambahan";
@@ -65,22 +81,26 @@ function buildWhatsAppMessage(formData: OrderFormData, pieceCount: number) {
   const notesText = formData.notes.trim() ? formData.notes.trim() : "-";
   const packageText =
     formData.packageType === "Custom"
-      ? `Custom (${pieceCount} pcs)`
-      : `${formData.packageType} (${pieceCount} pcs)`;
+      ? `Custom - ${pieceCount} pcs`
+      : `${formData.packageType} - ${pieceCount} pcs`;
+  const orderTime = formatOrderTime();
 
   return [
-    "Halo Cheesenana, saya mau pesan:",
+    "Halo Admin Cheesenana 👋",
     "",
-    `Nama: ${formData.name.trim()}`,
-    `No. WhatsApp: ${formData.phone.trim()}`,
-    `Varian rasa: ${formData.flavor}`,
-    `Jenis pesanan: ${packageText}`,
-    `Topping: ${toppingText}`,
-    `Metode ambil: ${formData.deliveryMethod}`,
-    `Lokasi/patokan: ${locationText}`,
-    `Catatan: ${notesText}`,
+    "Saya ingin pesan dengan detail berikut:",
     "",
-    "Mohon info total harga dan estimasi siapnya ya. Terima kasih.",
+    `• *Nama:* ${formData.name.trim()}`,
+    `• *No. WhatsApp:* ${formData.phone.trim()}`,
+    `• *Varian:* ${formData.flavor}`,
+    `• *Paket:* ${packageText}`,
+    `• *Topping:* ${toppingText}`,
+    `• *Metode Ambil:* ${formData.deliveryMethod}`,
+    `• *Lokasi/Patokan:* ${locationText}`,
+    `• *Catatan:* ${notesText}`,
+    `• *Waktu Order:* ${orderTime}`,
+    "",
+    "Mohon info total harga dan estimasi siapnya ya. Terima kasih 🙏",
   ].join("\n");
 }
 
@@ -174,7 +194,7 @@ export default function OrderForm() {
             <span className="text-accent"> Cheesenana</span>
           </h1>
           <p className="text-sm md:text-lg text-dark/80 max-w-3xl mx-auto font-medium">
-            Pilih paket dulu, lalu isi data singkat. Untuk pesanan 1 pcs, langsung pilih opsi Custom.
+            Pilih varian rasa dulu (Cheesenana Original atau varian lain), lalu tentukan paket. Untuk pesanan 1 pcs, langsung pilih opsi Custom.
           </p>
         </div>
 
@@ -194,7 +214,7 @@ export default function OrderForm() {
 
               <div className="mt-6 space-y-3">
                 {[
-                  "Pilih varian rasa original.",
+                  "Pilih varian: Cheesenana Original atau varian pisang favorit.",
                   "Pilih paket preset atau custom.",
                   "Klik kirim agar format order otomatis masuk WhatsApp.",
                 ].map((item) => (
@@ -273,7 +293,7 @@ export default function OrderForm() {
               </label>
 
               <label className="block md:col-span-2">
-                <span className="text-sm font-bold text-dark">Varian original</span>
+                <span className="text-sm font-bold text-dark">Varian rasa</span>
                 <select
                   value={formData.flavor}
                   onChange={(event) => updateField("flavor", event.target.value)}
