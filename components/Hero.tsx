@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
 
 export default function Hero() {
@@ -80,12 +81,12 @@ export default function Hero() {
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.45 }}
             className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 px-4 md:px-0"
           >
-            <a
-              href="#order"
+            <Link
+              href="/order"
               className="w-full sm:w-auto bg-primary text-dark font-bold px-8 py-3.5 md:py-4 rounded-full hover:bg-accent hover:text-white transition-all hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/40 active:translate-y-0 text-base md:text-lg"
             >
               Pesan Sekarang
-            </a>
+            </Link>
             <a
               href="#menu"
               className="w-full sm:w-auto bg-white/60 backdrop-blur-sm text-dark font-bold px-8 py-3.5 md:py-4 rounded-full hover:bg-white transition-all hover:-translate-y-1 shadow-sm border border-primary/20 text-base md:text-lg"
@@ -102,7 +103,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
           className="w-full lg:w-1/2 relative mt-8 lg:mt-0 will-change-transform"
         >
-          <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[450px] md:h-[450px] mx-auto">
+          <div className="relative w-70 h-70 sm:w-87.5 sm:h-87.5 md:w-112.5 md:h-112.5 mx-auto">
             {/* Organic shape background - Optimized blurs and animations */}
             <div className="absolute inset-0 bg-primary/20 md:bg-primary/30 rounded-full md:rounded-[60%_40%_30%_70%/60%_30%_70%_40%] animate-[blob_12s_ease-in-out_infinite] blur-lg md:blur-xl will-change-transform opacity-70"></div>
             <div className="absolute inset-0 bg-accent/20 md:bg-accent/30 rounded-full md:rounded-[40%_60%_70%_30%/40%_70%_30%_60%] animate-[blob_12s_ease-in-out_infinite_reverse] blur-lg md:blur-xl will-change-transform opacity-70"></div>
