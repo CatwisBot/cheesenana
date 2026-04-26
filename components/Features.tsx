@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import type { Variants } from "motion/react";
 import { Sparkles, Leaf, Utensils, Bike } from "lucide-react";
