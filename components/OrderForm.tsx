@@ -86,21 +86,22 @@ function buildWhatsAppMessage(formData: OrderFormData, pieceCount: number) {
   const orderTime = formatOrderTime();
 
   return [
-    "Halo Admin Cheesenana 👋",
+    "Halo Admin Cheesenana",
     "",
     "Saya ingin pesan dengan detail berikut:",
     "",
-    `• *Nama:* ${formData.name.trim()}`,
-    `• *No. WhatsApp:* ${formData.phone.trim()}`,
-    `• *Varian:* ${formData.flavor}`,
-    `• *Paket:* ${packageText}`,
-    `• *Topping:* ${toppingText}`,
-    `• *Metode Ambil:* ${formData.deliveryMethod}`,
-    `• *Lokasi/Patokan:* ${locationText}`,
-    `• *Catatan:* ${notesText}`,
-    `• *Waktu Order:* ${orderTime}`,
+    `- Nama: ${formData.name.trim()}`,
+    `- No WhatsApp: ${formData.phone.trim()}`,
+    `- Varian: ${formData.flavor}`,
+    `- Paket: ${packageText}`,
+    `- Topping: ${toppingText}`,
+    `- Metode Ambil: ${formData.deliveryMethod}`,
+    `- Lokasi/Patokan: ${locationText}`,
+    `- Catatan: ${notesText}`,
+    `- Waktu Order: ${orderTime}`,
     "",
-    "Mohon info total harga dan estimasi siapnya ya. Terima kasih 🙏",
+    "Mohon info total harga, ongkir (jika diantar), dan estimasi siapnya.",
+    "Terima kasih.",
   ].join("\n");
 }
 
