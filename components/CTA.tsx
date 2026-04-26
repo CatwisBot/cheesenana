@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
-import { MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
+
+const WHATSAPP_NUMBER = "6289636579514";
 
 export default function CTA() {
   return (
@@ -24,41 +27,35 @@ export default function CTA() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, type: "spring" }}
-          className="bg-white/90 backdrop-blur-md rounded-[32px] md:rounded-[48px] p-8 md:p-20 max-w-4xl mx-auto shadow-2xl border-4 border-white"
+          className="bg-white/90 backdrop-blur-md rounded-4xl md:rounded-[48px] p-8 md:p-16 max-w-5xl mx-auto shadow-2xl border-4 border-white"
         >
-          <h2 className="text-4xl md:text-6xl font-display font-extrabold text-dark mb-4 md:mb-6 leading-tight">
-            Kalau Bisa Ngemil, <br/>
-            <span className="text-accent">Kenapa Nunggu? 🧀😆</span>
+          <h2 className="text-3xl md:text-5xl font-display font-extrabold text-dark mb-4 md:mb-6 leading-tight">
+            Form Order Sudah Pindah ke
+            <span className="text-accent"> Halaman Khusus</span>
           </h2>
-          
-          <p className="text-base md:text-xl text-dark/80 mb-8 md:mb-10 max-w-2xl mx-auto font-medium">
-            Cemilan keju pisang yang bakal bikin kamu susah move on 🥹. Pesan sekarang dan nikmati sensasi hangatnya di rumahmu!
+
+          <p className="text-sm md:text-xl text-dark/80 mb-8 md:mb-10 max-w-3xl mx-auto font-medium leading-relaxed">
+            Alur pemesanan sekarang lebih rapi. Kamu bisa pilih paket preset atau custom (termasuk 1 pcs), lalu kirim detail otomatis ke WhatsApp.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://wa.me/1234567890"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-5">
+            <Link
+              href="/order"
+              className="w-full sm:w-auto bg-dark text-white font-bold px-6 py-4 md:px-8 md:py-5 rounded-full inline-flex items-center justify-center gap-2 shadow-lg hover:bg-accent transition-all"
+            >
+              Buka Form Pemesanan
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-[#25D366] text-white font-bold px-6 py-4 md:px-8 md:py-5 rounded-full flex items-center justify-center gap-3 text-base md:text-lg shadow-lg hover:shadow-[#25D366]/40 transition-all"
+              className="w-full sm:w-auto bg-[#25D366] text-white font-bold px-6 py-4 md:px-8 md:py-5 rounded-full inline-flex items-center justify-center gap-2 shadow-lg hover:brightness-105 transition-all"
             >
-              <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
-              Pesan via WhatsApp
-            </motion.a>
-            
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto bg-linear-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] text-white font-bold px-6 py-4 md:px-8 md:py-5 rounded-full flex items-center justify-center gap-3 text-base md:text-lg shadow-lg hover:shadow-[#dc2743]/40 transition-all"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 md:w-6 md:h-6"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              Ikuti di Instagram
-            </motion.a>
+              <MessageCircle className="w-5 h-5" />
+              Chat WhatsApp Langsung
+            </a>
           </div>
         </motion.div>
       </div>
